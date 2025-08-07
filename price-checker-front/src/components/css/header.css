@@ -1,0 +1,75 @@
+/* header.css */
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 0 20px;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  width: 100vw;
+  height: 60px;
+  left: 0;
+  top: 0;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default; /* курсор как на обычном фоне */
+
+}
+
+.header-logo {
+  margin-bottom: 20px;
+}
+
+.header-logo img {
+  width: 100px;
+  height: 100px;
+}
+
+.header-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-nav li {
+  margin-right: 20px;
+}
+
+.header-nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-search {
+  margin-top: 20px;
+}
+
+.header-search input[type="search"] {
+  width: 50%;
+  height: 40px;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-search button[type="submit"] {
+  width: 20%;
+  height: 40px;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header-search button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
