@@ -1,6 +1,6 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Console } from 'console';
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
     constructor(private readonly prismaService:PrismaService) {}
@@ -14,10 +14,11 @@ export class AuthService {
         if(user){
             throw new ConflictException('Пользователь с таким именем уже существует');
         }
+        const hashed = await bcrypt.hash(password, 10);
         await this.prismaService.user.create({
             data: {
                 userName,
-                password,
+                password: hashed,
             },
         });
         console.log('Пользователь успешно зарегистрирован:', userName);
@@ -30,9 +31,9 @@ export class AuthService {
                 userName,
             }
         })
-        if(!user || user.password !== password){
+        if(!user || !bcrypt.compare(password, user.password)){
             throw new ConflictException('Неверное имя пользователя или пароль');
-            return false; // Неверные учетные данные
+            
         }
         console.log('Пользователь успешно вошел в систему:', userName);
         return true; // Успешный вход
