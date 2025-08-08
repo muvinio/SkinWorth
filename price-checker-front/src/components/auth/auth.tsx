@@ -13,24 +13,34 @@ export function AuthPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = await login(loginValue, password);
-    if (success) {
+    const cleanedLogin = loginValue.trim();
+    const cleanedPassword = password.trim();
+    const success = await login(cleanedLogin, cleanedPassword);
+    if (success === true) {
       localStorage.setItem('isAuth', 'true');
       localStorage.setItem('userName', loginValue); // <--- добавьте это!
       window.location.reload();
-    } else {
-      alert('Неверный логин или пароль');
+    } else if (Array.isArray(success)) {
+      alert(success);
     }
+    else{
+      alert('Неверный логин или пароль'); // Если success не true и не массив, выводим общую ошибку
+    }
+    
   };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = await register(regLogin, regPassword);
-    if (success) {
+    const cleanedRegLogin = regLogin.trim();
+    const cleanedRegPassword = regPassword.trim();
+    const success = await register(cleanedRegLogin, cleanedRegPassword);
+    if (success === true) {
       alert('Регистрация успешна!');
-      localStorage.setItem('userName', regLogin); // <--- добавьте это!
       setShowRegister(false);
-    } else {
+    } else if (Array.isArray(success)) {
+      alert(success); // Выводим массив ошибок через запятую 
+    }
+    else {
       alert('Ошибка регистрации');
     }
   };

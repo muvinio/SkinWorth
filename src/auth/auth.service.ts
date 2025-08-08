@@ -5,14 +5,14 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
     constructor(private readonly prismaService:PrismaService) {}
 
-    async register(userName:string, password:string): Promise<Boolean>{
+    async register(userName:string, password:string): Promise<any>{
         const user = await this.prismaService.user.findUnique({
             where:{
                 userName,
             }
         })
         if(user){
-            throw new ConflictException('Пользователь с таким именем уже существует');
+            throw new ConflictException ('Пользователь с таким именем уже существует');
         }
         const hashed = await bcrypt.hash(password, 10);
         await this.prismaService.user.create({
@@ -25,14 +25,14 @@ export class AuthService {
         return true; // Успешная регистрация
     }
 
-    async login(userName:string, password:string): Promise<Boolean>{
+    async login(userName:string, password:string): Promise<any>{
         const user = await this.prismaService.user.findUnique({
             where:{
                 userName,
             }
         })
         if(!user || !bcrypt.compare(password, user.password)){
-            throw new ConflictException('Неверное имя пользователя или пароль');
+            throw new ConflictException ('Неверное имя пользователя или пароль');
             
         }
         console.log('Пользователь успешно вошел в систему:', userName);
