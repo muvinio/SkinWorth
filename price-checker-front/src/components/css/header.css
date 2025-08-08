@@ -1,75 +1,43 @@
-/* header.css */
 .header {
-  background-color: #333;
+  background-color: #2f2f2f;
   color: #fff;
-  padding: 0 20px;
-  text-align: center;
-  font-size: large;
-  font-weight: bold;
   width: 100vw;
   height: 60px;
-  left: 0;
-  top: 0;
   position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: default; /* курсор как на обычном фоне */
-
+  cursor: default;
 }
 
-.header-logo {
-  margin-bottom: 20px;
+/* Вложенный flex для центрирования текста */
+.header-inner {
+  width: 100%;
+ 
 }
 
-.header-logo img {
-  width: 100px;
-  height: 100px;
+.name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.header-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.header-nav li {
-  margin-right: 20px;
-}
-
-.header-nav a {
+.button {
+  background: #E69B8A;
   color: #fff;
-  text-decoration: none;
-}
-
-.header-search {
-  margin-top: 20px;
-}
-
-.header-search input[type="search"] {
-  width: 50%;
-  height: 40px;
-  padding: 10px;
-  font-size: 18px;
   border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.header-search button[type="submit"] {
-  width: 20%;
-  height: 40px;
-  padding: 10px;
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4CAF50;
-  color: #fff;
+  border-radius: 6px;
+  padding: 8px 16px;
+  float: right;
+  font-weight: bold;
   cursor: pointer;
+  margin-right: 40px;
+  transition: background 0.2s, transform 0.2s;
 }
-
-.header-search button[type="submit"]:hover {
-  background-color: #3e8e41;
+.button:hover {
+  transform: scale(1.02);
+  background: #E69B8A;
 }
