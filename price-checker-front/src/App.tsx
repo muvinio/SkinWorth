@@ -154,6 +154,7 @@ export default function App() {
                 className="logo"
                 src="/uploads/images/steamLogo.jpg"
                 alt="Steam"
+                onClick={() => window.open(`https://steamcommunity.com/market/listings/730/${selectedSkin}`, '_blank', 'noopener,noreferrer')}
                 style={{ width: 40, height: 40, marginLeft: 20, objectFit: 'contain' }}
               />
             </div>
@@ -170,7 +171,7 @@ export default function App() {
                 className="logo"
                 src="/uploads/images/marketCsgoLogo.png"
                 alt="Market"
-                
+                onClick={() => window.open(`https://market.csgo.com/ru/${selectedSkin}`, '_blank', 'noopener,noreferrer')}
                 style={{ width: 40, height: 40, marginLeft: 20, objectFit: 'contain' }}
               />
             </div>
