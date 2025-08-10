@@ -48,7 +48,7 @@ export function SearchBarWithSuggest({
   };
 
   return (
-    <div style={{ position: 'relative', width: '400px' }}>
+    <div style={{ position: 'relative', width: '400px', marginLeft:'0px',left:'0'}}>
       <input
         value={value}
         onChange={handleInputChange}

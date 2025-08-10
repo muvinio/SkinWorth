@@ -11,6 +11,10 @@ export function AuthPage() {
   const [regLogin, setRegLogin] = useState('');
   const [regPassword, setRegPassword] = useState('');
 
+  interface AuthPageProps {
+  onClose?: () => void;
+}
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const cleanedLogin = loginValue.trim();

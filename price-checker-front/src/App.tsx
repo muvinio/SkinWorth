@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import React from 'react';
 import {SearchBarWithSuggest} from './components/searchBarWithSuggest';
-import { SearchHistory } from './components/searchHistory'; // Assuming SearchHistory is in components/SearchHistory.tsx
+import { SearchHistory } from './components/searchHistory';
+import { PriceContainer } from './components/priceContainer';
 import 'ldrs/ring'
 import { Waveform } from 'ldrs/react'
 import 'ldrs/react/Waveform.css'
 import Header from './components/header';
 import Footer from './components/footer';
 import './components/css/markets.css'; // Importing the CSS for markets
-import { AuthPage } from './components/auth/auth';
+import { AuthPage } from './components/auth/authPage';
 import { register } from './components/auth/register';
 import { login } from './components/auth/login';
-import './components/css/logo.css'; // Importing the CSS for logo
+
 
 
 // Default values shown
@@ -106,98 +107,36 @@ export default function App() {
   // Проверка авторизации (например, через localStorage)
   const isAuth = localStorage.getItem('isAuth') === 'true';
 
-  // Если не авторизован — показываем только страницу авторизации
-  if (!isAuth) {
-    return <AuthPage />;
-  }
   
 
   return (
     <div style={{ padding: '40px', fontFamily: 'Arial' }}>
-      <Header
-  isAuth={isAuth}
-  
-  onLogout={() => {
-    localStorage.removeItem('isAuth');
-    window.location.reload();
-  
-  }}
-  
-/>
+      <Header isAuth={isAuth} onLogout={() => {
+        localStorage.removeItem('isAuth');
+        window.location.reload();
+      }} 
+      />
+
       <div style={{marginTop: '100px'}}>
-              <SearchBarWithSuggest onSelect={handleSelect} value={input} setValue={setInput} />
+          <SearchBarWithSuggest onSelect={handleSelect} value={input} setValue={setInput} />
       </div>
 
       {selectedSkin && (
         <div style={{ marginTop: '20px' }}>
           <h2>Результаты для: {selectedSkin} {userName}</h2> 
-          {loading && <p><Waveform
-            size="20"
-            stroke="3.5"
-            speed="1"
-            color="black" 
-          /></p> }
+          {loading && <p><Waveform size="20" stroke="3.5" speed="1" color="black" /></p> }
           
           {error && <p style={{ color: 'red' }}>{error}
             <p style={{ color: 'black' }}> Попробуйте еще раз</p>
-            </p>}
-          {steamPrice && (
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              minWidth: 320,
-              marginBottom: 8
-            }}>
-              <span style={{ width: 90, textAlign: 'left', fontWeight: 'bold', display: 'inline-block' }}>Steam:</span>
-              <span style={{ width: 90, textAlign: 'left', display: 'inline-block', marginLeft: 20 }}>{steamPrice} ₽</span>
-              <img 
-                className="logo"
-                src="/uploads/images/steamLogo.jpg"
-                alt="Steam"
-                onClick={() => window.open(`https://steamcommunity.com/market/listings/730/${selectedSkin}`, '_blank', 'noopener,noreferrer')}
-                style={{ width: 40, height: 40, marginLeft: 20, objectFit: 'contain' }}
-              />
-            </div>
-          )}
-          {marketPrice && (
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              minWidth: 320
-            }}>
-              <span style={{ width: 90, textAlign: 'left', fontWeight: 'bold', display: 'inline-block' }}>Market:</span>
-              <span style={{ width: 90, textAlign: 'left', display: 'inline-block', marginLeft: 20 }}>{marketPrice} ₽</span>
-              <img
-                className="logo"
-                src="/uploads/images/marketCsgoLogo.png"
-                alt="Market"
-                onClick={() => window.open(`https://market.csgo.com/ru/${selectedSkin}`, '_blank', 'noopener,noreferrer')}
-                style={{ width: 40, height: 40, marginLeft: 20, objectFit: 'contain' }}
-              />
-            </div>
-          )}
+          </p>}
+          
+          {steamPrice && ( PriceContainer({ selectedSkin, price: steamPrice, marketName: 'Steam', logo: 'steamLogo.jpg' }) )}
+          {marketPrice && ( PriceContainer({ selectedSkin, price: marketPrice, marketName: 'Market', logo: 'marketCsgoLogo.png' }) )}
         </div>
       )}
 
-      
-      {isAuth ? (
         <SearchHistory items={history} onSelect={handleSelect} />
-      ) : (
-        <div style={{
-          position: 'fixed',
-          right: 0,
-          top: '100px',
-          width: '220px',
-          background: '#222',
-          color: '#fff',
-          padding: '24px 0',
-          borderRadius: '16px 0 0 16px',
-          textAlign: 'center'
-        }}>
-          История поиска доступна только после входа в аккаунт
-        </div>
-      )}
-
+    
       <Footer />
     </div>
   );

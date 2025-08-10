@@ -1,43 +1,70 @@
+/* Стили для хедера */
 .header {
-  background-color: #2f2f2f;
-  color: #fff;
-  width: 100vw;
-  height: 60px;
+  background-color: #333;
+  color: white;
+  padding: 1rem;
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  cursor: default;
+  right: 0;
+  z-index: 1000;
 }
-
-/* Вложенный flex для центрирования текста */
-.header-inner {
-  width: 100%;
- 
-}
-
-.name {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
+.name{
+  font-size: x-large;
   font-weight: bold;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  margin-left: 24px;
+  margin-right: 40px;
 }
 
 .button {
-  background: #E69B8A;
-  color: #fff;
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: white;
   border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  float: right;
-  font-weight: bold;
+  border-radius: 4px;
   cursor: pointer;
-  margin-right: 40px;
-  transition: background 0.2s, transform 0.2s;
+  margin-left: 50px;
 }
-.button:hover {
-  transform: scale(1.02);
-  background: #E69B8A;
+
+/* Стили для модального окна */
+.auth-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.auth-modal-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  position: fixed;
+}
+
+/* Если AuthPage не принимает onClose, добавьте кнопку закрытия */
+.modal-close-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
 }
