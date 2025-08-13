@@ -8,7 +8,6 @@ import { MarketCsgoService } from 'src/markets/market-csgo/market-csgo.service';
 @Injectable()
 export class PriceService {
     constructor(
-        private readonly configService:ConfigService,
         private readonly steamService:SteamService,
         private readonly marketCsgoService:MarketCsgoService ){}
   // backend: price.service.ts

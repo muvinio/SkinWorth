@@ -1,9 +1,15 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
+import * as passport from 'passport-steam';
+import { Strategy as SteamStrategy } from 'passport-steam';
+import { ConfigService } from '@nestjs/config';
+import { User } from 'passport-steam'
 @Injectable()
 export class AuthService {
-    constructor(private readonly prismaService:PrismaService) {}
+    constructor(private readonly prismaService:PrismaService,
+                private readonly configService: ConfigService
+    ) {}
 
     async register(userName:string, password:string): Promise<any>{
         const user = await this.prismaService.user.findUnique({
@@ -38,4 +44,6 @@ export class AuthService {
         console.log('Пользователь успешно вошел в систему:', userName);
         return true; // Успешный вход
     }
+
+    
 }

@@ -13,7 +13,7 @@ import { PrismaModule } from './prisma/prisma.module';
 @Module({
   imports: [ConfigModule.forRoot({
     isGlobal:true
-  }), SteamModule, MarketCsgoModule, PriceModule, SuggestModule, HistoryModule, AuthModule, PrismaModule ],
+  }), SteamModule, MarketCsgoModule, PriceModule, SuggestModule, HistoryModule, AuthModule, PrismaModule],
   controllers: [AppController],
   providers: [AppService],
 })

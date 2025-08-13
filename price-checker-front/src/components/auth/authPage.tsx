@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {login} from './login';
 import {register} from './register';
+import '../css/auth.css';
 
 export function AuthPage() {
   const [loginValue, setLoginValue] = useState('');
@@ -50,39 +51,16 @@ export function AuthPage() {
   };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      background: '#222'
-    }}>
+    <div className="main-div">
       {!showRegister ? (
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            background: '#333',
-            padding: '32px 24px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 16px rgba(0,0,0,0.15)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            minWidth: '260px'
-          }}
-        >
-          <h2 style={{ color: '#fff', textAlign: 'center', margin: 0 }}>Вход</h2>
+        <form onSubmit={handleSubmit} className='form'>
+          <h2 className='entry-button'>Вход</h2>
           <input
             type="text"
             placeholder="Логин"
             value={loginValue}
             onChange={e => setLoginValue(e.target.value)}
-            style={{
-              padding: '10px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '16px'
-            }}
+            className='data-input'
             required
           />
           <input
@@ -90,65 +68,31 @@ export function AuthPage() {
             placeholder="Пароль"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            style={{
-              padding: '10px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '16px'
-            }}
+            className='data-input'
             required
           />
-          <button
-            type="submit"
-            style={{
-              padding: '10px',
-              borderRadius: '6px',
-              border: 'none',
-              background: '#4caf50',
-              color: '#fff',
-              fontWeight: 'bold',
-              fontSize: '16px',
-              cursor: 'pointer'
-            }}
-          >
+          <button type="submit" className='button'>
             Войти
           </button>
-          <div style={{ color: '#fff', marginTop: '12px', textAlign: 'center', fontSize: '14px' }}>
-            Если еще не зарегистрированы,&nbsp;
-            <span
-              style={{ color: '#4caf50', cursor: 'pointer', textDecoration: 'underline' }}
-              onClick={() => setShowRegister(true)}
-            >
+          <div style={{ color: '#fff', marginTop: '8px', textAlign: 'center', fontSize: '16px' }}>
+            Еще не зарегистрированы,&nbsp;
+            <div
+              style={{ color: '#3fa29f', cursor: 'pointer', textDecoration: 'underline' }}
+              onClick={() => setShowRegister(true)} >
               зарегистрируйтесь
-            </span>
+            </div>
           </div>
+          
         </form>
       ) : (
-        <form
-          onSubmit={handleRegister}
-          style={{
-            background: '#333',
-            padding: '32px 24px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 16px rgba(0,0,0,0.15)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            minWidth: '260px'
-          }}
-        >
-          <h2 style={{ color: '#fff', textAlign: 'center', margin: 0 }}>Регистрация</h2>
+        <form onSubmit={handleRegister} className='form' >
+          <h2 className='entry-button'>Регистрация</h2>
           <input
             type="text"
             placeholder="Логин"
             value={regLogin}
             onChange={e => setRegLogin(e.target.value)}
-            style={{
-              padding: '10px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '16px'
-            }}
+            className='data-input'
             required
           />
           <input
@@ -156,33 +100,16 @@ export function AuthPage() {
             placeholder="Пароль"
             value={regPassword}
             onChange={e => setRegPassword(e.target.value)}
-            style={{
-              padding: '10px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '16px'
-            }}
+            className='data-input'
             required
           />
-          <button
-            type="submit"
-            style={{
-              padding: '10px',
-              borderRadius: '6px',
-              border: 'none',
-              background: '#4caf50',
-              color: '#fff',
-              fontWeight: 'bold',
-              fontSize: '16px',
-              cursor: 'pointer'
-            }}
-          >
+          <button type="submit" className='button' >
             Зарегистрироваться
           </button>
-          <div style={{ color: '#fff', marginTop: '12px', textAlign: 'center', fontSize: '14px' }}>
+          <div style={{ color: '#fff', marginTop: '12px', textAlign: 'center', fontSize: '16px' }}>
             Уже есть аккаунт?&nbsp;
             <span
-              style={{ color: '#4caf50', cursor: 'pointer', textDecoration: 'underline' }}
+              style={{ color: '#3fa29f', cursor: 'pointer', textDecoration: 'underline' }}
               onClick={() => setShowRegister(false)}
             >
               Войти
