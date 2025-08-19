@@ -22,7 +22,7 @@ export function SearchBarWithSuggest({
         return;
       }
       try {
-        const res = await axios.get<string[]>(`/api/suggest?q=${encodeURIComponent(value)}`);
+        const res = await axios.get<string[]>(`http://localhost:5000/api/suggest?q=${encodeURIComponent(value)}`);
         setSuggestions(res.data.slice(0, 5));
         setShowSuggestions(true);
       } catch (err) {

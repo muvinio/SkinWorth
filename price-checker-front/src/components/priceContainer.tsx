@@ -1,11 +1,11 @@
 import React from 'react';
 import './css/priceContainer.css'; // Importing the CSS for price container
-export function PriceContainer({ selectedSkin, price,marketName, logo }: 
+export function PriceContainer({ selectedSkin, price,marketName, logo, link }: 
     {
     selectedSkin: string;
     price: string;
     marketName:String
-    
+    link: string;
     logo: string;
     }) {
     return (
@@ -15,7 +15,7 @@ export function PriceContainer({ selectedSkin, price,marketName, logo }:
             <img 
             className="logo"
             src={`/uploads/images/${logo}`}
-            onClick={() => window.open(`https://steamcommunity.com/market/listings/730/${selectedSkin}`, '_blank', 'noopener,noreferrer')} />
+            onClick={() => window.open(`${link}${selectedSkin}`, '_blank', 'noopener,noreferrer')} />
         </div>
     );
 }

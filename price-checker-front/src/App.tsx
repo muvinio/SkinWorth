@@ -38,13 +38,15 @@ export default function App() {
   const [regPassword, setRegPassword] = useState('');
   const [showRegister, setShowRegister] = useState(false);
   const userName = localStorage.getItem('userName') || '';
+  const steamLink = 'https://steamcommunity.com/market/listings/730/';
+  const marketLink = 'https://market.csgo.com/ru/'
 
 
 
   // Получение истории
   useEffect(() => {
     if (!userName) return;
-    axios.get(`/api/history?userName=${userName}`).then((res) => {
+    axios.get(`http://localhost:5000/api/history?userName=${userName}`).then((res) => {
       setHistory(res.data);
     });
   }, [userName]);
@@ -57,7 +59,7 @@ export default function App() {
     setMarketPrice(null);
 
     try {
-      const res = await axios.get('/api/price', { params: { item: skinName } });
+      const res = await axios.get('http://localhost:5000/api/price', { params: { item: skinName } });
       setSteamPrice(res.data.steamPrice || 'нет данных');
       setMarketPrice(res.data.marketPrice || 'нет данных');
     } catch (err: any) {
@@ -73,9 +75,9 @@ export default function App() {
     setInput(skin);
 
     try {
-      await axios.post('/api/history', { userName, skin });
+      await axios.post('http://localhost:5000/api/history', { userName, skin });
       // После успешного сохранения — обновить историю из бэкенда
-      const res = await axios.get(`/api/history?userName=${userName}`);
+      const res = await axios.get(`http://localhost:5000/api/history?userName=${userName}`);
       setHistory(res.data);
     } catch {}
 
@@ -130,8 +132,8 @@ export default function App() {
             <p style={{ color: 'black' }}> Попробуйте еще раз</p>
           </p>}
           
-          {steamPrice && ( PriceContainer({ selectedSkin, price: steamPrice, marketName: 'Steam', logo: 'steamLogo.jpg' }) )}
-          {marketPrice && ( PriceContainer({ selectedSkin, price: marketPrice, marketName: 'Market', logo: 'marketCsgoLogo.png' }) )}
+          {steamPrice && ( PriceContainer({ selectedSkin, price: steamPrice, marketName: 'Steam', logo: 'steamLogo.jpg',link:steamLink }) )}
+          {marketPrice && ( PriceContainer({ selectedSkin, price: marketPrice, marketName: 'Market', logo: 'marketCsgoLogo.png', link:marketLink }) )}
         </div>
       )}
 
