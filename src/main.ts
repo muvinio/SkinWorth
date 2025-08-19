@@ -18,6 +18,6 @@ async function bootstrap() {
   origin: 'http://localhost:3001', // или 3001, если ты его используешь
 });
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 4000);
 }
 bootstrap();
