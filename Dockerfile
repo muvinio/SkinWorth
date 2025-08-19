@@ -1,4 +1,4 @@
-FROM ghcr.io/nodejs/node:20-alpine AS base
+FROM mcr.microsoft.com/vscode/devcontainers/node:20-alpine AS base
 
 RUN apk add --no-cache libc6-compat
 
